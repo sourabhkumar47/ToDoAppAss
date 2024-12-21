@@ -1,6 +1,5 @@
 package com.sourabh.todoapp.di
 
-import androidx.room.Insert
 import com.sourabh.todoapp.data.remote.ApiService
 import dagger.Module
 import dagger.Provides
@@ -23,7 +22,6 @@ object NetworkModule {
             .baseUrl(BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
-            .create(Retrofit::class.java)
     }
 
     @Provides
