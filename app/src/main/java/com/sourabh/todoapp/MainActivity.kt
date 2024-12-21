@@ -19,6 +19,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.sourabh.todoapp.presentation.Nav
 import com.sourabh.todoapp.ui.theme.ToDoAppTheme
 import com.sourabh.todoapp.viewmodel.TaskViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -32,7 +33,11 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             ToDoAppTheme {
-
+                Scaffold(
+                    modifier = Modifier.fillMaxSize()
+                ) {
+                    Nav()
+                }
             }
         }
     }
