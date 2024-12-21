@@ -29,7 +29,7 @@ class TaskViewModel @Inject constructor(
         }
     }
 
-    private fun loadLocalTask() {
+    fun loadLocalTask() {
         viewModelScope.launch {
             _tasks.value = repository.getAllLocalTasks()
         }
