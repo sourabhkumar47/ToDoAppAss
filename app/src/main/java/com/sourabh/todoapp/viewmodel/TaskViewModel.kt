@@ -3,7 +3,6 @@ package com.sourabh.todoapp.viewmodel
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.sourabh.todoapp.data.local.entity.Task
-import com.sourabh.todoapp.data.remote.RemoteTodo
 import com.sourabh.todoapp.repository.TaskRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow

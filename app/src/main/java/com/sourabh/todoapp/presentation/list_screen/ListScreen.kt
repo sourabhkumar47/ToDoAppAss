@@ -25,13 +25,12 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
-import androidx.navigation.NavHostController
 import com.sourabh.todoapp.R
 import com.sourabh.todoapp.data.local.entity.Task
 import com.sourabh.todoapp.viewmodel.TaskViewModel
 
 @Composable
-fun ListScreen(navController: NavHostController, viewModel: TaskViewModel = hiltViewModel()) {
+fun ListScreen(viewModel: TaskViewModel = hiltViewModel()) {
 
     val localTasks by viewModel.tasks.collectAsState()
     val remoteTasks by viewModel.remoteTasks.collectAsState()
