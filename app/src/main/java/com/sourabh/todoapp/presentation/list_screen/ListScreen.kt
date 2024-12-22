@@ -7,9 +7,12 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Icon
@@ -43,13 +46,16 @@ fun ListScreen(viewModel: TaskViewModel = hiltViewModel()) {
     Column(
         modifier = Modifier
             .fillMaxSize()
+//            .verticalScroll(rememberScrollState())
             .padding(16.dp)
     ) {
         Text("Local Tasks", style = MaterialTheme.typography.titleMedium)
         Spacer(modifier = Modifier.height(8.dp))
 
         LazyColumn(
-            modifier = Modifier.weight(1f)
+            modifier = Modifier
+                .fillMaxWidth()
+                .heightIn(max = 250.dp)
         ) {
             items(localTasks) { task ->
                 TaskItem(task)
@@ -61,7 +67,8 @@ fun ListScreen(viewModel: TaskViewModel = hiltViewModel()) {
         Text("Remote Tasks", style = MaterialTheme.typography.titleMedium)
         Spacer(modifier = Modifier.height(8.dp))
         LazyColumn(
-            modifier = Modifier.weight(1f)
+            modifier = Modifier
+                .fillMaxWidth()
         ) {
             items(remoteTasks) { task ->
                 TaskItem(task)
