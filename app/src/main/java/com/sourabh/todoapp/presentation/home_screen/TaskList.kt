@@ -46,6 +46,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.airbnb.lottie.compose.LottieAnimation
 import com.airbnb.lottie.compose.LottieCompositionSpec
 import com.airbnb.lottie.compose.LottieConstants
@@ -130,7 +131,7 @@ fun HomeScreen(viewModel: TaskViewModel = hiltViewModel()) {
                         CircularProgressIndicator(modifier = Modifier.align(Alignment.Center))
                     }
 
-                    tasks.isEmpty() -> {
+                    tasks.isEmpty() && remoteTasks.isEmpty() -> {
                         EmptyTaskListAnimation()
                     }
 
@@ -142,19 +143,32 @@ fun HomeScreen(viewModel: TaskViewModel = hiltViewModel()) {
                         Column(
                             modifier = Modifier
                                 .fillMaxSize()
-                                .padding(16.dp)
+                                .padding(2.dp)
                         ) {
                             Text(
                                 "Local Tasks",
                                 style = MaterialTheme.typography.titleMedium,
-                                color = Color.Black
+                                color = Color.Black,
+                                modifier = Modifier
+                                    .padding(start = 12.dp)
                             )
                             Spacer(modifier = Modifier.height(8.dp))
+
+                            if (tasks.isEmpty()) {
+                                Text(
+                                    "No local tasks found",
+                                    style = MaterialTheme.typography.bodyMedium,
+                                    color = Color.Black,
+                                    modifier = Modifier
+                                        .padding(start = 12.dp)
+                                )
+                            }
 
                             TaskList(
                                 modifier = Modifier.heightIn(max = 250.dp),
                                 tasks = tasks,
-                                onEdit = { task -> viewModel.showEditTaskPopup(task) }
+                                onEdit = { task -> viewModel.showEditTaskPopup(task) },
+                                onDelete = { task -> viewModel.deleteTask(task) }
                             )
 
                             Spacer(modifier = Modifier.height(16.dp))
@@ -162,13 +176,16 @@ fun HomeScreen(viewModel: TaskViewModel = hiltViewModel()) {
                             Text(
                                 "Remote Tasks",
                                 style = MaterialTheme.typography.titleMedium,
-                                color = Color.Black
+                                color = Color.Black,
+                                modifier = Modifier
+                                    .padding(start = 12.dp)
                             )
                             Spacer(modifier = Modifier.height(8.dp))
                             TaskList(
                                 tasks = remoteTasks,
                                 onEdit = { task -> viewModel.showEditTaskPopup(task) },
-                                modifier = Modifier
+                                modifier = Modifier,
+                                onDelete = { task -> viewModel.deleteTask(task) }
                             )
                         }
                     }
@@ -206,7 +223,8 @@ fun HomeScreen(viewModel: TaskViewModel = hiltViewModel()) {
 fun TaskList(
     modifier: Modifier,
     tasks: List<Task>,
-    onEdit: (Task) -> Unit
+    onEdit: (Task) -> Unit,
+    onDelete: (Task) -> Unit
 ) {
     LazyColumn(
         modifier = Modifier
@@ -217,6 +235,7 @@ fun TaskList(
                 task = task,
                 tasks = tasks,
                 onEdit = onEdit,
+                onDelete = onDelete
             )
         }
     }
@@ -227,6 +246,7 @@ fun TaskItem(
     task: Task,
     tasks: List<Task>,
     onEdit: (Task) -> Unit,
+    onDelete: (Task) -> Unit
 ) {
 
     val bodyFont = FontFamily(
@@ -247,7 +267,9 @@ fun TaskItem(
         Row(
             verticalAlignment = Alignment.CenterVertically
         ) {
-            IconButton(onClick = { }) {
+            IconButton(onClick = {
+                onDelete(task)
+            }) {
                 Icon(
                     painter = painterResource(id = R.drawable.baseline_check_box_outline_blank_24),
                     contentDescription = "checkbox"
