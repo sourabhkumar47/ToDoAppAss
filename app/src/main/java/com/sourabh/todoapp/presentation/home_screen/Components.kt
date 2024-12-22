@@ -28,6 +28,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.dp
 import com.sourabh.todoapp.R
 import com.sourabh.todoapp.data.local.entity.Task
@@ -141,6 +142,7 @@ fun EditTaskPopup(
                             text = "Task Title"
                         )
                     },
+                    textStyle = TextStyle(color = Color.Black),
                     modifier = Modifier.fillMaxWidth()
                 )
 
