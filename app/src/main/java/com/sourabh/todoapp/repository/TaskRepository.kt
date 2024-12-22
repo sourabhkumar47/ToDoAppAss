@@ -14,6 +14,12 @@ class TaskRepository @Inject constructor(
 
     suspend fun getAllLocalTasks() = taskDao.getTasks()
 
+    //delete
+    suspend fun deleteTask(task: Task) = taskDao.deleteTask(task)
+
+    //edit
+    suspend fun editTask(task: Task) = taskDao.updateTask(task)
+
     //remote operations
     suspend fun getAllRemoteTasks() = apiService.getTodos()
 }
