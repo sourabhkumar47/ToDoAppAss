@@ -71,6 +71,7 @@ fun AddTaskPopup(onSave: (String) -> Unit, onDiscard: () -> Unit) {
                             text = "Task Title"
                         )
                     },
+                    textStyle = TextStyle(color = Color.Black),
                     modifier = Modifier.fillMaxWidth()
                 )
 
