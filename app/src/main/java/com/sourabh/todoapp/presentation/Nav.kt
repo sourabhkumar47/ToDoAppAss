@@ -58,9 +58,9 @@ fun BottomNavigationBar(navController: NavHostController) {
                 Icon(
                     imageVector = Icons.Default.Add,
                     contentDescription = "Add Task",
-                    tint = if (currentRoute == "add_task") colorResource(R.color.accent_dark) else colorResource(
-                        R.color.accent_light
-                    )
+//                    tint = if (currentRoute == "add_task") colorResource(R.color.accent_dark) else colorResource(
+//                        R.color.accent_light
+//                    )
                 )
             }, label = { Text("Add Task") }
         )
@@ -75,9 +75,9 @@ fun BottomNavigationBar(navController: NavHostController) {
                 Icon(
                     Icons.Default.Checklist,
                     contentDescription = "Task List",
-                    tint = if (currentRoute == "add_task") colorResource(R.color.accent_dark) else colorResource(
-                        R.color.accent_light
-                    )
+//                    tint = if (currentRoute == "add_task") colorResource(R.color.accent_dark) else colorResource(
+//                        R.color.accent_light
+//                    )
                 )
             },
             label = { Text("Task List") }

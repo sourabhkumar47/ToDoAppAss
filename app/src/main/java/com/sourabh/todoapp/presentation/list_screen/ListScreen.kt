@@ -47,7 +47,10 @@ fun ListScreen(viewModel: TaskViewModel = hiltViewModel()) {
     ) {
         Text("Local Tasks", style = MaterialTheme.typography.titleMedium)
         Spacer(modifier = Modifier.height(8.dp))
-        LazyColumn {
+
+        LazyColumn(
+            modifier = Modifier.weight(1f)
+        ) {
             items(localTasks) { task ->
                 TaskItem(task)
             }
@@ -57,7 +60,9 @@ fun ListScreen(viewModel: TaskViewModel = hiltViewModel()) {
 
         Text("Remote Tasks", style = MaterialTheme.typography.titleMedium)
         Spacer(modifier = Modifier.height(8.dp))
-        LazyColumn {
+        LazyColumn(
+            modifier = Modifier.weight(1f)
+        ) {
             items(remoteTasks) { task ->
                 TaskItem(task)
             }
@@ -72,15 +77,15 @@ fun TaskItem(task: Task) {
             .fillMaxWidth()
             .padding(8.dp)
             .clickable { },
-        elevation = CardDefaults.cardElevation(4.dp)
+        elevation = CardDefaults.cardElevation(6.dp)
     ) {
         Row(verticalAlignment = Alignment.CenterVertically) {
             Text(
-                "Title: ${task.title}",
+                task.title,
                 style = MaterialTheme.typography.bodyLarge,
                 modifier = Modifier
                     .weight(1f)
-                    .padding(top = 8.dp, bottom = 8.dp)
+                    .padding(8.dp)
             )
 
             IconButton(onClick = { }) {
