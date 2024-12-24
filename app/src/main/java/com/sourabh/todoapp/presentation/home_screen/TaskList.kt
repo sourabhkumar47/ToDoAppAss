@@ -59,7 +59,7 @@ import kotlinx.coroutines.delay
 @OptIn(ExperimentalMaterial3Api::class)
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
-fun HomeScreen(viewModel: TaskViewModel = hiltViewModel()) {
+fun HomeScreen0(viewModel: TaskViewModel = hiltViewModel()) {
     val tasks by viewModel.tasks.collectAsState()
     val remoteTasks by viewModel.remoteTasks.collectAsState()
     val showPopup by viewModel.showAddTaskPopup.collectAsState()
